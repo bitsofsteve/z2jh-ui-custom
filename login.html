@@ -34,7 +34,7 @@
   </p>
 </div>
 {% else %}
-<form action="{{login_url}}?next={{next}}" method="post" role="form">
+<form action="{{ authenticator_login_url | safe }}" method="post" role="form">
   <div class="auth-form-header">
     Choose a username and password to continue
   </div>
@@ -50,6 +50,7 @@
       {{login_error}}
     </p>
     {% endif %}
+    <input type="hidden" name="_xsrf" value="{{ xsrf }}" />
     <label for="username_input">Username:</label>
     <input
       id="username_input"
