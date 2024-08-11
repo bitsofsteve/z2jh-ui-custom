@@ -25,7 +25,7 @@
                 method="post"
                 role="form">
             <div class="auth-form-header">
-              <h1>Choose a username and password to continue</h1>
+              <h1>Sign in</h1>
             </div>
             <div class='auth-form-body m-auto'>
               <p id='insecure-login-warning' class='hidden'>
@@ -86,29 +86,8 @@
         {% endif %}
       {% endblock login_container %}
     </div>
-<!-- custom footer -->
-<footer class='navbar-default'>
-    <p><a href="https://openmined.org" target="_blank">OpenMined</a>. All rights reserved</p>
-</footer>
-<!-- end of custom footer -->
   {% endblock login %}
 {% endblock main %}
-
-{% block stylesheet %}
-{{ super() }}
-<style>
-    footer {
-        border-top: 1px solid silver;
-        padding: 10px;
-        bottom: 0;
-        position: fixed;
-        width: 100%;
-    }
-    footer p {
-        margin: 0 auto 0 auto;
-        text-align: center;
-    }
-</style>
 {% block script %}
   {{ super() }}
   <script>
