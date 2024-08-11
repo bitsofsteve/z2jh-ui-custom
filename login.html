@@ -21,7 +21,7 @@
   <br>
   <br>
   <p>
-  <div class="test", style="text-align: center;">
+  <div id="test-text", style="text-align: center;">
     <p>
         OpenMined
     </p>
@@ -77,7 +77,7 @@
         id="login_submit"
         type="submit"
         class='btn btn-jupyter'
-        value='Sign In'
+        value='Start'
         tabindex="3"
         />
       <div class="feedback-widget hidden">
@@ -137,6 +137,14 @@
     }
   
     .login_error {
+      color: #ff4f4f; /* Red color for errors */
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    #test-text {
+        text-align: center;
       color: #ff4f4f; /* Red color for errors */
       font-weight: bold;
       text-align: center;
