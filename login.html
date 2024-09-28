@@ -12,7 +12,45 @@
 {% block login %}
 <div id="container" class="container">
   {% if custom_html %}
-  {{ custom_html | safe }}
+  <!-- {{ custom_html | safe }} -->
+  <img src="https://om-assets-h3f2axhubqdkbreg.z01.azurefd.net/docs-assets/full_gradient_2.jpeg" alt="Example Image" class="container-hero">
+  <div id="" class="login-container">
+    <div class="service-container">
+      <div class="service-title">
+        <p class="try-text">TRY OUT PYSYFT</p>
+        <p class="connect-text">Create or connect to your session</p>
+      </div>
+      <div class="service-session">
+        <p>The session is unique to you and you can come back anytime - all you need is to specify a username and
+          password
+          for it.</p>
+      </div>
+      <div id="service-form" class="service-form">
+        <form action="{{ authenticator_login_url | safe }}" method="post">
+          <div class="form-item">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" class="form-input" name="username" id="username" required>
+          </div>
+          <div class="form-item">
+            <label for="password" class="form-label">Password:</label>
+            <input type="text" class="form-input" name="password" id="password" required>
+          </div>
+          <div class="form-item">
+            <button type="submit" class="form-button">Start my session</button>
+          </div>
+          <div class="form-list">
+            <ul>
+              <li>If lost, session credentials cannot be recovered.</li>
+              <li>Do not put sensitive data or information in this environment.</li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="service-text">
+      <p>Get started using our live JupyterHub.</p>
+    </div>
+  </div>
   {% elif login_service %}
   <img src="https://om-assets-h3f2axhubqdkbreg.z01.azurefd.net/docs-assets/full_gradient_2.jpeg" alt="Example Image" class="container-hero">
   <div id="" class="login-container">
@@ -54,45 +92,7 @@
   </div>
 </div>
 {% else %}
-  <img src="https://om-assets-h3f2axhubqdkbreg.z01.azurefd.net/docs-assets/full_gradient_2.jpeg" alt="Example Image" class="container-hero">
-  <div id="" class="login-container">
-    <div class="service-container">
-      <div class="service-title">
-        <p class="try-text">TRY OUT PYSYFT</p>
-        <p class="connect-text">Create or connect to your session</p>
-      </div>
-      <div class="service-session">
-        <p>The session is unique to you and you can come back anytime - all you need is to specify a username and
-          password
-          for it.</p>
-      </div>
-      <div id="service-form" class="service-form">
-        <form action="{{ authenticator_login_url | safe }}" method="post">
-          <div class="form-item">
-            <label for="username" class="form-label">Username:</label>
-            <input type="text" class="form-input" name="username" id="username" required>
-          </div>
-          <div class="form-item">
-            <label for="password" class="form-label">Password:</label>
-            <input type="text" class="form-input" name="password" id="password" required>
-          </div>
-          <div class="form-item">
-            <button type="submit" class="form-button">Start my session</button>
-          </div>
-          <div class="form-list">
-            <ul>
-              <li>If lost, session credentials cannot be recovered.</li>
-              <li>Do not put sensitive data or information in this environment.</li>
-            </ul>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="service-text">
-      <p>Get started using our live JupyterHub.</p>
-    </div>
-  </div>
-<!-- <form action="{{ authenticator_login_url | safe }}" method="post" role="form">
+<form action="{{ authenticator_login_url | safe }}" method="post" role="form">
   <div class="auth-form-header">
     Choose a username and password to continue
   </div>
@@ -122,7 +122,7 @@
       </div>
     </div>
   </div>
-</form> -->
+</form>
 {% endif %}
 </div>
 <!-- custom footer -->
