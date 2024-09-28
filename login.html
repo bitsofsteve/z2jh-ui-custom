@@ -1,37 +1,57 @@
+<!-- templates/login.html -->
+
 {% extends "page.html" %}
 {% if announcement_login %}
-  {% set announcement = announcement_login %}
+{% set announcement = announcement_login %}
 {% endif %}
 
 {% block login_widget %}
 {% endblock %}
 
 {% block main %}
-
 {% block login %}
-<div id="login-main" class="container">
-{% if custom_html %}
-{{ custom_html | safe }}
-{% elif login_service %}
-<div class="service-login">
-  <a role="button" class='btn btn-jupyter btn-lg' href='{{authenticator_login_url}}'>
-    Sign in with {{login_service}}
-  </a>
-  <br>
-  <br>
-  <br>
-  <p>
-  <div id="test-text", style="text-align: center;">
-    <p>
-        OpenMined
-    </p>
-
+<div id="container" class="container">
+  {% if custom_html %}
+  {{ custom_html | safe }}
+  {% elif login_service %}
+  <img src="https://om-assets-h3f2axhubqdkbreg.z01.azurefd.net/docs-assets/full_gradient_2.jpeg" alt="Example Image" class="container-hero">
+  <div id="" class="login-container">
+    <div class="service-container">
+      <div class="service-title">
+        <p class="try-text">TRY OUT PYSYFT</p>
+        <p class="connect-text">Create or connect to your session</p>
+      </div>
+      <div class="service-session">
+        <p>The session is unique to you and you can come back anytime - all you need is to specify a username and
+          password
+          for it.</p>
+      </div>
+      <div id="service-form" class="service-form">
+        <form action="{{ authenticator_login_url | safe }}" method="post">
+          <div class="form-item">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" class="form-input" name="username" id="username" required>
+          </div>
+          <div class="form-item">
+            <label for="password" class="form-label">Password:</label>
+            <input type="text" class="form-input" name="password" id="password" required>
+          </div>
+          <div class="form-item">
+            <button type="submit" class="form-button">Start my session</button>
+          </div>
+          <div class="form-list">
+            <ul>
+              <li>If lost, session credentials cannot be recovered.</li>
+              <li>Do not put sensitive data or information in this environment.</li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="service-text">
+      <p>Get started using our live JupyterHub.</p>
+    </div>
   </div>
-	  <br>
-	  <br>
-	  <br>
-  </div>
-  </p>
 </div>
 {% else %}
 <form action="{{ authenticator_login_url | safe }}" method="post" role="form">
@@ -41,8 +61,8 @@
   <div class='auth-form-body'>
 
     <p id='insecure-login-warning' class='hidden'>
-    Warning: JupyterHub seems to be served over an unsecured HTTP connection.
-    We strongly recommend enabling HTTPS for JupyterHub.
+      Warning: JupyterHub seems to be served over an unsecured HTTP connection.
+      We strongly recommend enabling HTTPS for JupyterHub.
     </p>
 
     {% if login_error %}
@@ -52,34 +72,13 @@
     {% endif %}
     <input type="hidden" name="_xsrf" value="{{ xsrf }}" />
     <label for="username_input">Username:</label>
-    <input
-      id="username_input"
-      type="text"
-      autocapitalize="off"
-      autocorrect="off"
-      class="form-control"
-      name="username"
-      val="{{username}}"
-      tabindex="1"
-      autofocus="autofocus"
-    />
+    <input id="username_input" type="text" autocapitalize="off" autocorrect="off" class="form-control" name="username"
+      val="{{username}}" tabindex="1" autofocus="autofocus" />
     <label for='password_input'>Password:</label>
-    <input
-      type="password"
-      class="form-control"
-      name="password"
-      id="password_input"
-      tabindex="2"
-    />
+    <input type="password" class="form-control" name="password" id="password_input" tabindex="2" />
 
     <div class="feedback-container">
-      <input
-        id="login_submit"
-        type="submit"
-        class='btn btn-jupyter'
-        value='Start'
-        tabindex="3"
-        />
+      <input id="login_submit" type="submit" class='btn btn-jupyter' value='Start' tabindex="3" />
       <div class="feedback-widget hidden">
         <i class="fa fa-spinner"></i>
       </div>
@@ -89,8 +88,15 @@
 {% endif %}
 </div>
 <!-- custom footer -->
-<footer class='navbar-default'>
-    <p> &copy <a href="https://openmined.org" target="_blank">OpenMined</a>. All rights reserved.</p>
+<footer class='footer'>
+  <div>
+    <img src="https://om-assets-h3f2axhubqdkbreg.z01.azurefd.net/docs-assets/OpenMined-icon.png" alt="Example Image" class="footer-icon">
+  </div>
+  <div>
+    <span>&copy; </span>
+    <span id="year"></span> 
+    <a href="https://openmined.org" target="_blank" rel="noopener">OpenMined Foundation.</a>
+  </div>
 </footer>
 <!-- end of custom footer -->
 {% endblock login %}
@@ -100,72 +106,292 @@
 {% block stylesheet %}
 {{ super() }}
 <style>
-    #login-main {
+  *,
+  ::after,
+  ::before,
+  html,
+  body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  body {
+    background: #FFFFFF;
+  }
+
+  /* header h1 {
+    display: none;
+  } */
+
+  .main img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
-    background-color: #f1f1f1; /* Light background color */
-  
+    position: relative;
+  }
+
+  .container-hero {
+    position: absolute;
+    flex-shrink: 0;
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 40%;
+    transform: scaleY(-1);
+    z-index: -1;
+  }
+
+  .login-container {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    height: 80vh;
+    width: 80%;
+    margin: auto;
+  }
+
+  .service-container {
+    width: 400px;
+    height: 598px;
+    height: auto;
+    padding-bottom: 2rem;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #2D2B3A;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 152%;
+  }
+
+  .service-title {
+    width: inherit;
+    height: 110px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px 20px 0px 0px;
+    background: #2D2B3A;
+  }
+
+  .service-title .try-text {
+    color: var(--Theme-Primary-200, #A6DFF2);
+    font-family: "Fira Code";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 27px */
+    text-transform: uppercase;
+  }
+
+  .service-title .connect-text {
+    color: #F1F0F4;
+    font-family: Rubik;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+  }
+
+  .service-session {
+    font-size: 1rem;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .service-form {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+  }
+
+  .service-form form {
+    box-shadow: none;
+  }
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+  }
+
+  .form-label {
+    width: 100%;
+    color: var(--Theme-Gray-800, #2D2B3A);
+    text-align: left;
+    font-family: Rubik;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    /* 33px */
+  }
+
+  .form-input {
+    text-align: left;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    border: none;
+    border-radius: 2px;
+    background: #F1F0F4;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .form-button {
+    color: #61ABC5;
+    text-align: center;
+    margin-top: 10px;
+
+    /* Regular/Large */
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 27px */
+    border-radius: 0px 2px 2px 0px;
+    border: 3px solid #79CFEC;
+    background: #FFF;
+    cursor: pointer;
+    width: 150px;
+    align-self: center;
+    /* Toggle Shadow */
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
+  }
+
+  .form-list {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #892626;
+    font-family: Roboto;
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 152%;
+    /* 27.36px */
+  }
+
+  .service-text {
+    font-family: Rubik;
+    font-size: 2rem;
+    font-weight: 462;
+    line-height: 88.96px;
+    text-align: center;
+
+    color: var(--Theme-Gray-800, #2D2B3A);
+    font-family: Rubik;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 462;
+    line-height: 139%;
+  }
+
+  #login-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    height: 80vh;
+    width: 80%;
+    margin: auto;
+    /* background-color: #f1f1f1; */
+    /* Light background color */
+
     #insecure-login-warning {
-      background-color: #ffebcd; /* Light warning background color */
+      background-color: #ffebcd;
+      /* Light warning background color */
       padding: 10px;
       border-radius: 5px;
-      color: #333; /* Dark text for warning */
+      color: #333;
+      /* Dark text for warning */
       text-align: center;
     }
-  
+
     .service-login {
       text-align: center;
       vertical-align: middle;
       margin: auto;
       padding: 20px;
-      background-color: #fff; /* White background for the service login box */
+      background-color: #fff;
+      /* White background for the service login box */
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      /* Light shadow for depth */
     }
-  
+
     form {
-      vertical-align: middle;
+      /* vertical-align: middle;
       margin: auto;
       width: 100%;
       max-width: 400px;
       padding: 20px;
       background-color: #fff;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+      /* Light shadow for depth */
     }
-  
+
     .login_error {
-      color: #ff4f4f; /* Red color for errors */
+      color: #ff4f4f;
+      /* Red color for errors */
       font-weight: bold;
       text-align: center;
       margin-bottom: 1rem;
     }
 
     #test-text {
-        text-align: center;
-      color: #ff4f4f; /* Red color for errors */
+      text-align: center;
+      color: #ff4f4f;
+      /* Red color for errors */
       font-weight: bold;
       text-align: center;
       margin-bottom: 1rem;
     }
-  
+
     .auth-form-header {
       padding: 15px 20px;
       color: #fff;
-      background: #007BFF; /* Primary blue color */
+      background: #007BFF;
+      /* Primary blue color */
       font-size: 1.5rem;
       border-radius: 10px 10px 0 0;
       text-align: center;
     }
-  
-    .auth-form-header > h1 {
+
+    .auth-form-header>h1 {
       font-size: inherit;
       font-weight: inherit;
       margin: 0;
     }
-  
+
     .auth-form-body {
       padding: 20px;
       border: 1px solid #ddd;
@@ -173,91 +399,156 @@
       border-radius: 0 0 10px 10px;
       background-color: #f9f9f9;
     }
-  
+
     .feedback-container {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 20px;
-  
+
       #login_submit {
         width: 100%;
-        background-color: #007BFF; /* Primary blue color */
+        background-color: #007BFF;
+        /* Primary blue color */
         color: #fff;
         padding: 10px;
         border-radius: 5px;
         font-size: 1rem;
         transition: background-color 0.3s ease;
       }
-  
+
       #login_submit:hover {
-        background-color: #0056b3; /* Darker blue on hover */
+        background-color: #0056b3;
+        /* Darker blue on hover */
       }
-  
+
       .feedback-widget {
         margin-left: 10px;
       }
     }
-  
+
     #login_terms {
       margin-top: 20px;
       text-align: center;
       font-size: 0.875rem;
       color: #666;
-  
+
       a {
         color: #007BFF;
         text-decoration: underline;
       }
     }
   }
-  
+
   /* Footer styling */
   #login-footer {
     text-align: center;
     margin-top: 20px;
     padding: 15px;
-    background-color: #333; /* Dark footer background */
+    background-color: #333;
+    /* Dark footer background */
     color: #fff;
-  
+
     a {
-      color: #007BFF; /* Link color */
+      color: #007BFF;
+      /* Link color */
       text-decoration: none;
     }
-  
+
     a:hover {
       text-decoration: underline;
     }
   }
-  
-    footer {
-        border-top: 1px solid silver;
-        padding: 10px;
-        bottom: 0;
-        position: fixed;
-        width: 100%;
+
+  footer {
+    background-color: #17161D;
+    border-top: 1px solid silver;
+    padding: 10px;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+
+  footer,
+  footer a {
+    margin: 0 auto 0 auto;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .footer .footer-icon {
+    height: 2rem;
+    width: auto;
+  }
+
+  /* Wide Screen */
+  @media screen and (min-width: 1020px) {
+    .login-container {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      width: 70%;
+      margin: 0% auto;
+      gap: 95px;
     }
-    footer p {
-        margin: 0 auto 0 auto;
-        text-align: center;
+
+    .service-text {
+      font-family: Rubik;
+      font-size: 2rem;
+      font-weight: 462;
+      line-height: 88.96px;
+      text-align: center;
+
+      color: var(--Theme-Gray-800, #2D2B3A);
+      font-family: Rubik;
+      font-size: 55px;
+      font-style: normal;
+      font-weight: 462;
+      line-height: 139%;
     }
+  }
 </style>
 {% endblock %}
 
 {% block script %}
+<script>
+  // TODO: Add footer copyright year
+  window.onload = function () {
+    // This script runs after the full page (including images, CSS) has loaded
+    // console.log("Everything on the page has loaded");
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    // console.log('currentYear: ', currentYear);
+
+    // Insert the current year into the element with the ID 'year'
+    const yearElement = document.getElementById('year');
+    // console.log('yearElement: ', yearElement);
+    yearElement.textContent = currentYear;
+  };
+</script>
 {{ super() }}
 <script>
-if (window.location.protocol === "http:") {
-  // unhide http warning
-  var warning = document.getElementById('insecure-login-warning');
-  warning.className = warning.className.replace(/\bhidden\b/, '');
-}
-// setup onSubmit feedback
-$('form').submit((e) => {
-  var form = $(e.target);
-  form.find('.feedback-container>input').attr('disabled', true);
-  form.find('.feedback-container>*').toggleClass('hidden');
-  form.find('.feedback-widget>*').toggleClass('fa-pulse');
-});
+  if (window.location.protocol === "http:") {
+    // unhide http warning
+    var warning = document.getElementById('insecure-login-warning');
+    warning.className = warning?.className.replace(/\bhidden\b/, '');
+  }
+
+  // setup onSubmit feedback
+  $('form').submit((e) => {
+    var form = $(e.target);
+    form.find('.feedback-container>input').attr('disabled', true);
+    form.find('.feedback-container>*').toggleClass('hidden');
+    form.find('.feedback-widget>*').toggleClass('fa-pulse');
+  });
 </script>
 {% endblock %}
