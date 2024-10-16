@@ -22,15 +22,15 @@
         <p class="connect-text">Create or connect to your session</p>
       </div>
       <div class="service-session">
-        <p>The session is unique to you and you can come back anytime - all you need is to specify a username and
+        <p>The session is unique to you and you can come back anytime - all you need is to specify a sessionname and
           password
           for it.</p>
       </div>
       <div id="service-form" class="service-form">
         <form action="{{ authenticator_login_url | safe }}" method="post">
           <div class="form-item">
-            <label for="username" class="form-label">Username:</label>
-            <input type="text" class="form-input" name="username" id="username" required>
+            <label for="sessionname" class="form-label">Username:</label>
+            <input type="text" class="form-input" name="sessionname" id="sessionname" required>
           </div>
           <div class="form-item">
             <label for="password" class="form-label">Password:</label>
@@ -60,29 +60,27 @@
       <p class="connect-text">Create or connect to your session</p>
     </div>
     <div class="service-session">
-      <p>The session is unique to you and you can come back anytime - all you need is to specify a username and
-        password
-        for it.</p>
+      <p>The session is unique to you and you can come back anytime - all you need is to specify a session name for it.</p>
     </div>
     <div id="service-form" class="service-form">
       <form action="{{ authenticator_login_url | safe }}" method="post" role="form">
         <input type="hidden" name="_xsrf" value="{{ xsrf }}" />
         <div class="form-item">
-          <label for="username" class="form-label">Username:</label>
+          <label for="sessionname" class="form-label">Session Name:</label>
           <input 
             type="text" 
             class="form-input" 
-            name="username" 
-            id="username" 
-            autocomplete="username" 
+            name="sessionname" 
+            id="sessionname" 
+            autocomplete="sessionname" 
             required 
             minlength="3"
             maxlength="30"
             pattern="^[a-zA-Z0-9\-._]{3,30}$"
-            title="Username must be 3 - 30 characters and may only contain letters, numbers, hyphens, dots, and underscores."
+            title="Session name must be 3 - 30 characters and may only contain letters, numbers, hyphens, dots, and underscores."
           >
         </div>
-        <div class="form-item">
+        <!-- <div class="form-item">
           <label for="password" class="form-label">Password:</label>
           <input 
             type="password" 
@@ -96,7 +94,7 @@
             pattern="^[a-zA-Z0-9\-._]{6,12}$"
             title="Password must be 6-12 characters."
           >
-        </div>
+        </div> -->
         <div class="form-item">
           <button type="submit" class="form-button">Start my session</button>
         </div>
@@ -157,17 +155,7 @@
 
   body {
     background: #FFFFFF;
-    /* background: url("https://om-assets-h3f2axhubqdkbreg.z01.azurefd.net/docs-assets/full_gradient_2.jpeg"); */
   }
-
-  /* header h1 {
-    display: none;
-  } */
-
-  /* .main img {
-    max-width: 100%;
-    height: auto;
-  } */
 
   .main-content {
     position: relative;
@@ -234,27 +222,18 @@
 
   .service-title .try-text {
     color: var(--Theme-Primary-200, #A6DFF2);
-    font-family: "Fira Code";
+    font-family: 'Roboto';
     font-size: 18px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-    /* 27px */
-    text-transform: uppercase;
-    /*  */
-    color: var(--Theme-Primary-200, #A6DFF2);
-    font-family: Rubik;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 150%; /* 27px */
     text-transform: uppercase;
   }
 
   .service-title .connect-text {
     color: #F1F0F4;
-    font-family: Rubik;
-    font-size: 26px;
+    font-family: 'Roboto';
+    font-size: 23px;
     font-style: normal;
     font-weight: 500;
     line-height: 150%;
@@ -346,14 +325,8 @@
   }
 
   .service-text {
-    font-family: Rubik;
-    font-size: 2rem;
-    font-weight: 462;
-    line-height: 88.96px;
-    text-align: center;
-
     color: var(--Theme-Gray-800, #2D2B3A);
-    font-family: Rubik;
+    font-family: 'Roboto';
     font-size: 38px;
     font-style: normal;
     font-weight: 462;
