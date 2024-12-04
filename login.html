@@ -66,13 +66,13 @@
       <form action="{{ authenticator_login_url | safe }}" method="post" role="form">
         <input type="hidden" name="_xsrf" value="{{ xsrf }}" />
         <div class="form-item">
-          <label for="sessionname" class="form-label">Session Name:</label>
+          <label for="username" class="form-label">Session Name:</label>
           <input 
             type="text" 
             class="form-input" 
-            name="sessionname" 
-            id="sessionname" 
-            autocomplete="sessionname" 
+            name="username" 
+            id="username" 
+            autocomplete="username" 
             required 
             minlength="3"
             maxlength="30"
