@@ -66,7 +66,7 @@
       <form action="{{ authenticator_login_url | safe }}" method="post" role="form">
         <input type="hidden" name="_xsrf" value="{{ xsrf }}" />
         <div class="form-item">
-          <label for="username" class="form-label">Session Name:</label>
+          <label for="username" class="form-label">Username:</label>
           <input 
             type="text" 
             class="form-input" 
@@ -77,10 +77,10 @@
             minlength="3"
             maxlength="30"
             pattern="^[a-zA-Z0-9\-._]{3,30}$"
-            title="Session name must be 3 - 30 characters and may only contain letters, numbers, hyphens, dots, and underscores."
+            title="Username must be 3 - 30 characters and may only contain letters, numbers, hyphens, dots, and underscores."
           >
         </div>
-        <!-- <div class="form-item">
+        <div class="form-item">
           <label for="password" class="form-label">Password:</label>
           <input 
             type="password" 
@@ -94,7 +94,7 @@
             pattern="^[a-zA-Z0-9\-._]{6,12}$"
             title="Password must be 6-12 characters."
           >
-        </div> -->
+        </div>
         <div class="form-item">
           <button type="submit" class="form-button">Start my session</button>
         </div>
